@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Giggle Clicker</title>
 	<script>
-		var counter = 0;
-		var upgrade = 1;
+		var giggles = 0;
+		var giggleincrease = 1;
 		var upgradeauto = 1;
 		var msec = 0;
 		var autogiggler=0;
@@ -17,13 +17,59 @@
 		var questionmark=0;
 		var gems=0;
 		
+		//updates all values
+		function reloadall() {
+			document.getElementById("var").innerHTML = "Giggles: " + giggles;
+			document.getElementById("persec").innerHTML = "Giggles/s: " + msec;
+			document.getElementById('upgamt1').innerText = "Level: " + autogiggler;
+			document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
+			document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
+			document.getElementById('upgamt4').innerText = "Level: " + mokeygiggler;
+			document.getElementById('upgamt5').innerText = "Level: " + renkgiggler;
+			document.getElementById('upgamt6').innerText = "Level: " + questionmark;
+		}
+		//overwrites save file
+		function save() {
+		  localStorage.setItem("giggles", giggles);
+		  localStorage.setItem("giggleincrease", giggleincrease);
+		  localStorage.setItem("msec", msec);
+		  localStorage.setItem("autogiggler", autogiggler);
+		  localStorage.setItem("premiumgiggler", premiumgiggler);
+		  localStorage.setItem("genkgiggler", genkgiggler);
+		  localStorage.setItem("renkgiggler", renkgiggler);
+		  localStorage.setItem("mokeygiggler", mokeygiggler);
+		  localStorage.setItem("questionmark", questionmark);
+		  localStorage.setItem("gems", gems);
+		}
+		//loads save file
+		function load() {
+		  giggles = parseInt(localStorage.getItem("giggles"));
+		  giggleincrease = parseInt(localStorage.getItem("giggleincrease"));
+		  msec = parseInt(localStorage.getItem("msec"));
+		  autogiggler = parseInt(localStorage.getItem("autogiggler"));
+		  premiumgiggler = parseInt(localStorage.getItem("premiumgiggler"));
+		  genkgiggler = parseInt(localStorage.getItem("genkgiggler"));
+		  renkgiggler = parseInt(localStorage.getItem("renkgiggler"));
+		  mokeygiggler = parseInt(localStorage.getItem("mokeygiggler"));
+		  questionmark = parseInt(localStorage.getItem("questionmark"));
+		  workerown = parseInt(localStorage.getItem("workerown"));
+		  gems = parseInt(localStorage.getItem("gems"));
+		  reloadall();
+		}
+		//save before exiting
+		function closingCode() {
+		  if (confirm("You have closed the window, would you like to save?") === true) {
+			save();
+			return null;
+		  }
+		}
 		function ac(x) {
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 		}
 		function buyUpgrade(x){
 			if(x=="AutoGiggler"){
-				if(counter>=25){
-					counter = counter - 25;
+				if(giggles>=25){
+					giggles = giggles - 25;
 					msec += upgradeauto;
 					autogiggler += 1;
 					update();
@@ -33,8 +79,8 @@
 				}
 			}
 			if(x=="PremiumGiggler"){
-				if(counter>=100){
-					counter = counter - 100;
+				if(giggles>=100){
+					giggles = giggles - 100;
 					premiumgiggler += 1;
 					update();
 					document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
@@ -44,8 +90,8 @@
 				}
 			}
 			if(x=="GenkGiggler"){
-				if(counter>=250){
-					counter = counter - 250;
+				if(giggles>=250){
+					giggles = giggles - 250;
 					genkgiggler += 1;
 					update();
 					document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
@@ -54,8 +100,8 @@
 				}
 			}
 			if(x=="MokeyGiggler"){
-				if(counter>=500){
-					counter = counter - 500;
+				if(giggles>=500){
+					giggles = giggles - 500;
 					mokeygiggler += 1;
 					update();
 					document.getElementById('upgamt4').innerText = "Level: " + mokeygiggler;
@@ -64,8 +110,8 @@
 				}
 			}
 			if(x=="RenkGiggler"){
-				if(counter>=1000){
-					counter = counter - 1000;
+				if(giggles>=1000){
+					giggles = giggles - 1000;
 					renkgiggler += 1;
 					update();
 					document.getElementById('upgamt5').innerText = "Level: " + renkgiggler;
@@ -74,8 +120,8 @@
 				}
 			}
 			if(x=="QuestionMark"){
-				if(counter>=200000){
-					counter = counter - 200000;
+				if(giggles>=200000){
+					giggles = giggles - 200000;
 					questionmark += 1;
 					update();
 					document.getElementById('upgamt6').innerText = "Level: " + questionmark;
@@ -85,17 +131,17 @@
 			}
 		}
 		function update() {
-			document.getElementById('var').innerText = "Giggles: " + ac(counter);
+			document.getElementById('var').innerText = "Giggles: " + ac(giggles);
 			if(autogiggler>=1){
 				document.getElementById('persec').innerText = "Giggles/s: " + ac(msec);
 			}
 		}
 		function clicked(){
-			counter = counter + upgrade;
+			giggles = giggles + giggleincrease;
 			if(genkgiggler>=1){
 				x = Math.random();
 				if(x < .01){
-					counter = counter + (genkgiggler * 20);
+					giggles = giggles + (genkgiggler * 20);
 					update();
 					console.log("okay :/");
 				}
@@ -103,16 +149,26 @@
 			update();
 		}
 		function myTimer() {
-			counter += msec;
-			document.getElementById("var").innerHTML = "Giggles: " + ac(counter);
+			giggles += msec;
+			document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
 		}
 		setInterval(myTimer, 1000);
+		function mySecondTimer() {
+			save();
+			autosaveMessage();
+		}
+		setInterval(mySecondTimer, 30000);
+		
+		function autosaveMessage() {
+			document.getElementById("autosave").innerHTML = "( ! ) Your game has been saved!";
+		}
 	</script>
   </head>
   
-  <body style="margin:0px; padding:0px; background-attachment: fixed; text-color:#fff; text-align:center; background-size: cover; background-image:url('https://media.discordapp.net/attachments/683400516524441615/997501333135446066/istockphoto-1091835666-612x612.jpg');>
-    <div class="name">Giggle Clicker</div>
-    <div class="version">v1.0.0</div>
+  <body onbeforeunload="return closingCode()" style="margin:0px; padding:0px; background-attachment: fixed; text-color:#fff; text-align:center; background-size: cover; background-image:url('https://media.discordapp.net/attachments/683400516524441615/997501333135446066/istockphoto-1091835666-612x612.jpg');">
+	<button id='autosave' class="round" onclick='upgrade("upgrade")' style="visibility:false; font-family:courier; float:left; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;"></button>
+    <div class="name" style="float:center;">Giggle Clicker</div>
+    <div class="version" style="float:center;">v1.0.0</div>
 	<br>
     <center>
     <div style="font-size: 20px" id="var">Giggles: 0</div>
@@ -181,5 +237,9 @@
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
+	<footer>
+		<button class="settings" onclick="save()">Save</button>
+		<button class="settings" onclick="load()">Load</button>
+	</footer>
   </body>
 </html>
