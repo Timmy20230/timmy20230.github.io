@@ -7,6 +7,7 @@
 	<script>
 		var counter = 0;
 		var upgrade = 1;
+		var upgradeauto = 1;
 		var msec = 0;
 		var autogiggler=0;
 		var premiumgiggler=0;
@@ -21,7 +22,7 @@
 			if(x=="AutoGiggler"){
 				if(counter>=25){
 					counter = counter - 25;
-					msec += upgrade;
+					msec += upgradeauto;
 					autogiggler += 1;
 					update();
 				} else {
@@ -29,9 +30,10 @@
 				}
 			}
 			if(x=="PremiumGiggler"){
-				if(counter>=25){
-					counter = counter - 25;
+				if(counter>=100){
+					counter = counter - 100;
 					update();
+					upgrade += 1;
 				} else {
 					alert("You do not have enough for the Premium Giggler!");
 				}
@@ -68,7 +70,7 @@
 			}
 		}
 		function clicked(){
-			counter = counter + 1;
+			counter = counter + upgrade;
 			update();
 		}
 		function myTimer() {
