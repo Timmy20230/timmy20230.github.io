@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Giggle Clicker</title>
+	<script>
+		var counter = 0;
+		var upgrade = 1;
+		var msec = 0;
+		var autogiggler=0;
+		var premiumgiggler=0;
+		var genkgiggler=0;
+		var renkgiggler=0;
+		var questionmark=0;
+		
+		function ac(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+		}
+		function buyUpgrade(x){
+			if(x=="AutoGiggler"){
+				if(counter>=25){
+					counter = counter - 25;
+					msec += upgrade;
+					autogiggler += 1;
+					update();
+				} else {
+					alert("You do not have enough for the Auto Giggler!");
+				}
+			}
+			if(x=="PremiumGiggler"){
+				if(counter>=25){
+					counter = counter - 25;
+					update();
+				} else {
+					alert("You do not have enough for the Premium Giggler!");
+				}
+			}
+			if(x=="GenkGiggler"){
+				if(counter>=25){
+					counter = counter - 25;
+					update();
+				} else {
+					alert("You do not have enough for the Genk Giggler!");
+				}
+			}
+			if(x=="RenkGiggler"){
+				if(counter>=25){
+					counter = counter - 25;
+					update();
+				} else {
+					alert("You do not have enough for the Renk Giggler!");
+				}
+			}
+			if(x=="QuestionMark"){
+				if(counter>=25){
+					counter = counter - 25;
+					update();
+				} else {
+					alert("You do not have enough for the ???!");
+				}
+			}
+		}
+		function update() {
+			document.getElementById('var').innerText = "Giggles: " + counter;
+			if(autogiggler>=1){
+				document.getElementById('persec').innerText = "Giggles/s: " + msec;
+			}
+		}
+		function clicked(){
+			counter = counter + 1;
+			update();
+		}
+		function myTimer() {
+			counter += msec;
+			document.getElementById("var").innerHTML = "Giggles: " + ac(counter);
+		}
+		setInterval(myTimer, 1000);
+	</script>
+  </head>
+  
+  <body style="margin:0px; padding:0px; background-attachment: fixed; text-color:#fff; text-align:center; background-size: cover; background-image:url('https://media.discordapp.net/attachments/683400516524441615/997501333135446066/istockphoto-1091835666-612x612.jpg');>
+    <div class="author">Not Kevin#3299</div>
+    <div class="name">Giggle Clicker</div>
+    <div class="version">v1.0.0</div>
+    <center>
+    <div style="font-size: 20px" id="var">Giggles: 0</div>
+	<div style="font-size: 20px" id="persec">25 Giggles to Unlock Auto Clicking!</div>
+    <br>
+    <button id="box" style="width:100px; height:50px;" onclick='clicked()'></button>
+    </center>
+    <h1 style="font-size: 30px">Upgrades!</h1>
+	
+    <section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:left;">
+			<div id="upgrade" style="width:150px;">Auto Giggler</div>
+			<div>Cost: 25</div>
+			<button onclick="buyUpgrade('AutoGiggler')" style="width:60px; height:30px;"></button>
+		<br>
+		</div>
+		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+	</section>
+	<br>
+	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:left;">
+		<div id="upgrade" style="width:150px;">Premium Giggler</div>
+		<div>Cost: 100</div>
+		<button onclick="buyUpgrade('PremiumGiggler')" style="width:60px; height:30px;"></button>
+		<br>
+		</div>
+		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+	</section>
+	<br>
+	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:left;">
+		<div id="upgrade" style="width:150px";>Genk Giggler</div>
+		<div>Cost: 250</div>
+		<button onclick="buyUpgrade('GenkGiggler')" style="width:60px; height:30px;"></button>
+		<br>
+		</div>
+		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+	</section>
+	<br>
+	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:left;">
+		<div id="upgrade" style="width:150px;">Renk Giggler</div>
+		<div>Cost: 1000</div>
+		<button onclick="buyUpgrade('RenkGiggler')" style="width:60px; height:30px;"></button>
+		<br>
+		</div>
+		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+	</section>
+	<br>
+	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:left;">
+		<div id="upgrade" style="width:150px;">???</div>
+		<div>Cost: 200000</div>
+		<button onclick="buyUpgrade('QuestionMark')" style="width:60px; height:30px;"></button>
+		<br>
+		</div>
+		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+	</section>
+  </body>
+</html>
