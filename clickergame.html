@@ -13,6 +13,7 @@
 		var premiumgiggler=0;
 		var genkgiggler=0;
 		var renkgiggler=0;
+		var mokeygiggler=0;
 		var questionmark=0;
 		
 		function ac(x) {
@@ -25,6 +26,7 @@
 					msec += upgradeauto;
 					autogiggler += 1;
 					update();
+					document.getElementById('upgamt1').innerText = "Level: " + autogiggler;
 				} else {
 					alert("You do not have enough for the Auto Giggler!");
 				}
@@ -32,7 +34,9 @@
 			if(x=="PremiumGiggler"){
 				if(counter>=100){
 					counter = counter - 100;
+					premiumgiggler += 1;
 					update();
+					document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
 					upgrade += 1;
 				} else {
 					alert("You do not have enough for the Premium Giggler!");
@@ -41,7 +45,9 @@
 			if(x=="GenkGiggler"){
 				if(counter>=250){
 					counter = counter - 250;
+					genkgiggler += 1;
 					update();
+					document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
 				} else {
 					alert("You do not have enough for the Genk Giggler!");
 				}
@@ -49,7 +55,9 @@
 			if(x=="MokeyGiggler"){
 				if(counter>=500){
 					counter = counter - 500;
+					mokeygiggler += 1;
 					update();
+					document.getElementById('upgamt4').innerText = "Level: " + mokeygiggler;
 				} else {
 					alert("You do not have enough for the Mokey Giggler!");
 				}
@@ -57,7 +65,9 @@
 			if(x=="RenkGiggler"){
 				if(counter>=1000){
 					counter = counter - 1000;
+					renkgiggler += 1;
 					update();
+					document.getElementById('upgamt5').innerText = "Level: " + renkgiggler;
 				} else {
 					alert("You do not have enough for the Renk Giggler!");
 				}
@@ -65,7 +75,9 @@
 			if(x=="QuestionMark"){
 				if(counter>=200000){
 					counter = counter - 200000;
+					questionmark += 1;
 					update();
+					document.getElementById('upgamt6').innerText = "Level: " + questionmark;
 				} else {
 					alert("You do not have enough for the ???!");
 				}
@@ -105,7 +117,7 @@
 		<div style="float:left;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
 			<div>Cost: 25</div>
-			<button onclick="buyUpgrade('AutoGiggler')" style="width:60px; height:30px;"></button>
+			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
@@ -115,7 +127,7 @@
 		<div style="float:left;">
 		<div id="upgrade" style="width:150px;">Premium Giggler</div>
 		<div>Cost: 100</div>
-		<button onclick="buyUpgrade('PremiumGiggler')" style="width:60px; height:30px;"></button>
+		<button onclick="buyUpgrade('PremiumGiggler')" style="width:90px; height:30px;" id="upgamt2">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
@@ -125,7 +137,7 @@
 		<div style="float:left;">
 		<div id="upgrade" style="width:150px";>Genk Giggler</div>
 		<div>Cost: 250</div>
-		<button onclick="buyUpgrade('GenkGiggler')" style="width:60px; height:30px;"></button>
+		<button onclick="buyUpgrade('GenkGiggler')" style="width:90px; height:30px;" id="upgamt3">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
@@ -135,7 +147,7 @@
 		<div style="float:left;">
 		<div id="upgrade" style="width:150px";>Mokey Giggler</div>
 		<div>Cost: 250</div>
-		<button onclick="buyUpgrade('MokeyGiggler')" style="width:60px; height:30px;"></button>
+		<button onclick="buyUpgrade('MokeyGiggler')" style="width:90px; height:30px;" id="upgamt4">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
@@ -145,7 +157,7 @@
 		<div style="float:left;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
 		<div>Cost: 1000</div>
-		<button onclick="buyUpgrade('RenkGiggler')" style="width:60px; height:30px;"></button>
+		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
@@ -155,7 +167,7 @@
 		<div style="float:left;">
 		<div id="upgrade" style="width:150px;">???</div>
 		<div>Cost: 200000</div>
-		<button onclick="buyUpgrade('QuestionMark')" style="width:60px; height:30px;"></button>
+		<button onclick="buyUpgrade('QuestionMark')" style="width:90px; height:30px;" id="upgamt6">Level 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
