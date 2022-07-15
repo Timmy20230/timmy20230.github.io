@@ -15,6 +15,7 @@
 		var renkgiggler=0;
 		var mokeygiggler=0;
 		var questionmark=0;
+		var gems=0;
 		
 		function ac(x) {
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -84,13 +85,21 @@
 			}
 		}
 		function update() {
-			document.getElementById('var').innerText = "Giggles: " + counter;
+			document.getElementById('var').innerText = "Giggles: " + ac(counter);
 			if(autogiggler>=1){
-				document.getElementById('persec').innerText = "Giggles/s: " + msec;
+				document.getElementById('persec').innerText = "Giggles/s: " + ac(msec);
 			}
 		}
 		function clicked(){
 			counter = counter + upgrade;
+			if(genkgiggler>=1){
+				x = Math.random();
+				if(x < .01){
+					counter = counter + (genkgiggler * 20);
+					update();
+					console.log("okay :/");
+				}
+			}
 			update();
 		}
 		function myTimer() {
@@ -113,64 +122,64 @@
     </center>
     <h1 style="font-size: 30px">Upgrades!</h1>
 	
-    <section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+    <section style="background-color:#191b1d; color:white; font-family:'Courier New'; text-align:center; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
 			<div>Cost: 25</div>
 			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+	<section style="background-color:#191b1d; color:white; font-family:'Courier New';  margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Premium Giggler</div>
 		<div>Cost: 100</div>
 		<button onclick="buyUpgrade('PremiumGiggler')" style="width:90px; height:30px;" id="upgamt2">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+	<section style="background-color:#191b1d; color:white; font-family:'Courier New';  margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Genk Giggler</div>
 		<div>Cost: 250</div>
 		<button onclick="buyUpgrade('GenkGiggler')" style="width:90px; height:30px;" id="upgamt3">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:right; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Mokey Giggler</div>
 		<div>Cost: 250</div>
 		<button onclick="buyUpgrade('MokeyGiggler')" style="width:90px; height:30px;" id="upgamt4">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
 		<div>Cost: 1000</div>
 		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:gray; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:left;">
+	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">???</div>
 		<div>Cost: 200000</div>
 		<button onclick="buyUpgrade('QuestionMark')" style="width:90px; height:30px;" id="upgamt6">Level 0</button>
 		<br>
 		</div>
-		<div id="enhancement" style="float:left; height:20px; width:200px;">Enhance</div>
+		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
   </body>
 </html>
