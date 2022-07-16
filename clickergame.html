@@ -85,9 +85,9 @@
 				if(giggles>=100){
 					giggles = giggles - 100;
 					premiumgiggler += 1;
-					update();
 					document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
 					giggleincrease += 1;
+					update();
 				} else {
 					alert("You do not have enough for the Premium Giggler!");
 				}
@@ -96,8 +96,8 @@
 				if(giggles>=250){
 					giggles = giggles - 250;
 					genkgiggler += 1;
-					update();
 					document.getElementById('upgamt3').innerText = "Level: " +ac(genkgiggler);
+					update();
 				} else {
 					alert("You do not have enough for the Genk Giggler!");
 				}
@@ -106,15 +106,15 @@
 				if(giggles>=500){
 					giggles = giggles - 500;
 					mokeygiggler += 1;
-					update();
 					document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+					update();
 				} else {
 					alert("You do not have enough for the Mokey Giggler!");
 				}
 			}
 			if(x=="RenkGiggler"){
-				if(giggles>=1000){
-					giggles = giggles - 1000;
+				if(giggles>=10000){
+					giggles = giggles - 10000;
 					renkgiggler += 1;
 					update();
 					document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
@@ -136,18 +136,35 @@
 		}
 		function update() {
 			document.getElementById('var').innerText = "Giggles: " + ac(giggles);
+			if(renkgiggler>=1){
+				document.getElementById('box').innerText = "+" + ac(giggleincrease*renkgiggler);
+			} else {
+				document.getElementById('box').innerText = "+" + ac(giggleincrease) + " Giggle";
+			}
 			if(autogiggler>=1){
 				document.getElementById('persec').innerText = "Giggles/s: " + ac(msec);
 			}
 		}
 		function clicked(){
-			giggles = giggles + giggleincrease;
-			if(genkgiggler>=1){
-				x = Math.random();
-				if(x < .01){
-					giggles = giggles + (genkgiggler * 20);
-					update();
-					console.log("okay :/");
+			if(renkgiggler>=1){
+				giggles = giggles + (giggleincrease*renkgiggler);
+				if(genkgiggler>=1){
+					x = Math.random();
+					if(x < .01){
+						giggles = giggles + (genkgiggler * 20 * (renkgiggler));
+						update();
+						console.log("okay :/");
+					}
+				}
+			} else {
+				giggles = giggles + giggleincrease;
+				if(genkgiggler>=1){
+					x = Math.random();
+					if(x < .01){
+						giggles = giggles + (genkgiggler * 20);
+						update();
+						console.log("okay :/");
+					}
 				}
 			}
 			update();
@@ -196,7 +213,7 @@
     <div style="font-size: 20px; width: 200px; color:#ffffff; font-family:'Courier';" id="var">Giggles: 0</div>
 	<div style="font-size: 20px; width: 700px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
     <br>
-    <button id="box" style="width:100px; height:50px;" onclick='clicked()'></button>
+    <button id="box" style="width:100px; height:50px;" onclick='clicked()'>+1 Giggle</button>
     </center>
     <h1 style="font-size: 30px">Upgrades!</h1>
 	
@@ -240,7 +257,7 @@
 	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
-		<div>Cost: 1000</div>
+		<div>Cost: 10000</div>
 		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level: 0</button>
 		<br>
 		</div>
