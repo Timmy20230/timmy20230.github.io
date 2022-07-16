@@ -23,12 +23,13 @@
 			if(autogiggler>=1){
 				document.getElementById("persec").innerHTML = "Giggles/s: " + msec;
 			}
-			document.getElementById('upgamt1').innerText = "Level: " + autogiggler;
-			document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
-			document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
-			document.getElementById('upgamt4').innerText = "Level: " + mokeygiggler;
-			document.getElementById('upgamt5').innerText = "Level: " + renkgiggler;
-			document.getElementById('upgamt6').innerText = "Level: " + questionmark;
+			document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
+			document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+			document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
+			document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+			document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+			document.getElementById('upgamt6').innerText = "Level: " + ac(questionmark);
+			document.getElementById('gems').innerText = "Gems: " + ac(gems);
 		}
 		//overwrites save file
 		function save() {
@@ -177,6 +178,15 @@
 					x = Math.random();
 						if(x < (.05*mokeygiggler)){
 							giggles = giggles + (mokeygiggler * 5 * renkgiggler);
+							gems = gems + (1 * mokeygiggler);
+							update();
+						}
+					}
+				} else {
+					if(mokeygiggler>=1){
+					x = Math.random();
+						if(x < (.05)){
+							giggles = giggles + (mokeygiggler * 5);
 							gems = gems + (1 * mokeygiggler);
 							update();
 						}
