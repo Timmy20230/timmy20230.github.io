@@ -156,6 +156,14 @@
 						console.log("okay :/");
 					}
 				}
+				if(mokeygiggler>=1){
+					x = Math.random();
+					if(x < .05){
+						giggles = giggles + (mokeygiggler * 5);
+						gems += gems * mokeygiggler;
+						update();
+					}
+				}
 			} else {
 				giggles = giggles + giggleincrease;
 				if(genkgiggler>=1){
@@ -164,6 +172,14 @@
 						giggles = giggles + (genkgiggler * 20);
 						update();
 						console.log("okay :/");
+					}
+					if(mokeygiggler>=1){
+					x = Math.random();
+						if(x < .05){
+							giggles = giggles + (mokeygiggler * 5 * renkgiggler);
+							gems += gems * mokeygiggler;
+							update();
+						}
 					}
 				}
 			}
