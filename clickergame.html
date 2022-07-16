@@ -179,27 +179,35 @@
   </head>
   
   <body onbeforeunload="closingCode()" id="question" style="margin:0px; padding:0px; background-attachment: fixed; color:#ffffff; text-align:-webkit-center; background-color:#232527;">
-	<button id='autosave' class="round" onclick='upgrade("upgrade")' style="visibility:true; font-family:courier; float:left; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">( ! )</button>
-	<button id='autosave' class="round" onclick='upgrade("upgrade")' style="visibility:true; font-family:courier; float:right; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;"><img src="https://media.discordapp.net/attachments/917831049030012939/997613922779660389/1144441.png" style="width:20px; height:20px;"> Gems: 0</button>
+	<section style="float:right;">
+		<div id='autosave' class="round" style="visibility:true; font-family:courier;  font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">( ! )</div>
+		<br>
+		<div id='gems' class="round" style="visibility:true; font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;"><img src="https://media.discordapp.net/attachments/917831049030012939/997613922779660389/1144441.png" style="width:20px; height:20px;"> Gems: 0</div>
+	</section>
+	<section style="float:left;">
+		<div id="menu" class="round" onclick="openMenu()" style="visibility:true; font-family:courier;  font-size: 24px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .2em .7em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+			Coming Soon!
+		</div>
+	</section>
     <div class="name" style="width:200px; color:#ffffff; font-family:'Courier';">Giggle Clicker</div>
-    <div class="version" style="width:100px; color:#ffffff; font-family:'Courier';">Version Alpha</div>
+    <div class="version" style="width:150px; color:#ffffff; font-family:'Courier';">Version Alpha</div>
 	<br>
     <center>
-    <div style="font-size: 20px; color:#ffffff; font-family:'Courier';" id="var">Giggles: 0</div>
-	<div style="font-size: 20px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
+    <div style="font-size: 20px; width: 200px; color:#ffffff; font-family:'Courier';" id="var">Giggles: 0</div>
+	<div style="font-size: 20px; width: 700px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
     <br>
     <button id="box" style="width:100px; height:50px;" onclick='clicked()'></button>
     </center>
     <h1 style="font-size: 30px">Upgrades!</h1>
 	
-    <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 90px; outline:0; transition: ease all .1s;">
+    <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 70px; width:600px; outline:0; transition: ease all .1s;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
 			<div>Cost: 25</div>
 			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level: 0</button>
 		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Premium Giggler</div>
 		<div>Cost: 100</div>
@@ -209,7 +217,7 @@
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Genk Giggler</div>
 		<div>Cost: 250</div>
@@ -219,7 +227,7 @@
 		<div id="enhancement" style="float:right; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Mokey Giggler</div>
 		<div>Cost: 250</div>
@@ -229,7 +237,7 @@
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
 		<div>Cost: 1000</div>
@@ -239,7 +247,7 @@
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">???</div>
 		<div>Cost: 200000</div>
@@ -249,6 +257,7 @@
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<footer>
+		<br>
 		<button class="settings" onclick="save()">Save</button>
 		<button class="settings" onclick="load()">Load</button>
 	</footer>
