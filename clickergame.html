@@ -20,7 +20,9 @@
 		//updates all values
 		function reloadall() {
 			document.getElementById("var").innerHTML = "Giggles: " + giggles;
-			document.getElementById("persec").innerHTML = "Giggles/s: " + msec;
+			if(autogiggler>=1){
+				document.getElementById("persec").innerHTML = "Giggles/s: " + msec;
+			}
 			document.getElementById('upgamt1').innerText = "Level: " + autogiggler;
 			document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
 			document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
@@ -66,14 +68,15 @@
 		function ac(x) {
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 		}
+		
 		function buyUpgrade(x){
 			if(x=="AutoGiggler"){
 				if(giggles>=25){
 					giggles = giggles - 25;
-					msec += upgradeauto;
+					msec = msec + upgradeauto;
 					autogiggler += 1;
 					update();
-					document.getElementById('upgamt1').innerText = "Level: " + autogiggler;
+					document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
 				} else {
 					alert("You do not have enough for the Auto Giggler!");
 				}
@@ -83,8 +86,8 @@
 					giggles = giggles - 100;
 					premiumgiggler += 1;
 					update();
-					document.getElementById('upgamt2').innerText = "Level: " + premiumgiggler;
-					upgrade += 1;
+					document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+					giggleincrease += 1;
 				} else {
 					alert("You do not have enough for the Premium Giggler!");
 				}
@@ -94,7 +97,7 @@
 					giggles = giggles - 250;
 					genkgiggler += 1;
 					update();
-					document.getElementById('upgamt3').innerText = "Level: " + genkgiggler;
+					document.getElementById('upgamt3').innerText = "Level: " +ac(genkgiggler);
 				} else {
 					alert("You do not have enough for the Genk Giggler!");
 				}
@@ -104,7 +107,7 @@
 					giggles = giggles - 500;
 					mokeygiggler += 1;
 					update();
-					document.getElementById('upgamt4').innerText = "Level: " + mokeygiggler;
+					document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
 				} else {
 					alert("You do not have enough for the Mokey Giggler!");
 				}
@@ -114,7 +117,7 @@
 					giggles = giggles - 1000;
 					renkgiggler += 1;
 					update();
-					document.getElementById('upgamt5').innerText = "Level: " + renkgiggler;
+					document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
 				} else {
 					alert("You do not have enough for the Renk Giggler!");
 				}
@@ -124,7 +127,7 @@
 					giggles = giggles - 200000;
 					questionmark += 1;
 					update();
-					document.getElementById('upgamt6').innerText = "Level: " + questionmark;
+					document.getElementById('upgamt6').innerText = "Level: " + ac(questionmark);
 				} else {
 					alert("You do not have enough for the ???!");
 				}
@@ -148,97 +151,99 @@
 			}
 			update();
 		}
+		
 		function myTimer() {
-			giggles += msec;
+			console.log(msec);
+			giggles = giggles + msec;
 			document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
 			reloadall();
 		}
 		setInterval(myTimer, 1000);
+		
 		function clearMessages() {
 			document.getElementById("autosave").innerHTML = "( ! )";
 		}
 		setInterval(clearMessages, 5000);
-		setInterval(myTimer, 1000);
+		
 		function mySecondTimer() {
 			save();
 			autosaveMessage();
 		}
-		setInterval(mySecondTimer, 30000);
+		setInterval(mySecondTimer, 60000);
 		
 		function autosaveMessage() {
 			document.getElementById("autosave").innerHTML = "( ! ) Your game has been saved!";
 		}
+		
 	</script>
   </head>
   
-  <body onbeforeunload="return closingCode()" style="margin:0px; padding:0px; background-attachment: fixed; text-color:#fff; text-align:center; background-size: cover; background-image:url('https://media.discordapp.net/attachments/683400516524441615/997501333135446066/istockphoto-1091835666-612x612.jpg');">
+  <body onbeforeunload="closingCode()" style="margin:0px; padding:0px; background-attachment: fixed; color:#ffffff; text-align:-webkit-center; background-color:#232527;">
 	<button id='autosave' class="round" onclick='upgrade("upgrade")' style="visibility:true; font-family:courier; float:left; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">( ! )</button>
-    <div class="name" style="float:center;">Giggle Clicker</div>
-    <div class="version" style="float:center;">v1.0.0</div>
+	<button id='autosave' class="round" onclick='upgrade("upgrade")' style="visibility:true; font-family:courier; float:right; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;"><img src="https://media.discordapp.net/attachments/917831049030012939/997613922779660389/1144441.png" style="width:20px; height:20px;"> Gems: 0</button>
+    <div class="name" style="width:200px; color:#ffffff; font-family:'Courier';">Giggle Clicker</div>
+    <div class="version" style="width:100px; color:#ffffff; font-family:'Courier';">v1.0.0</div>
 	<br>
     <center>
-    <div style="font-size: 20px" id="var">Giggles: 0</div>
-	<div style="font-size: 20px" id="persec">25 Giggles to Unlock Auto Clicking!</div>
+    <div style="font-size: 20px; color:#ffffff; font-family:'Courier';" id="var">Giggles: 0</div>
+	<div style="font-size: 20px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
     <br>
     <button id="box" style="width:100px; height:50px;" onclick='clicked()'></button>
     </center>
     <h1 style="font-size: 30px">Upgrades!</h1>
 	
-    <section style="background-color:#191b1d; color:white; font-family:'Courier New'; text-align:center; margin:auto; height:70px; padding-left:20px;">
-		<div style="float:center;">
+    <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 90px; outline:0; transition: ease all .1s;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
 			<div>Cost: 25</div>
-			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level 0</button>
-		<br>
-		</div>
-		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
+			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level: 0</button>
+		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:#191b1d; color:white; font-family:'Courier New';  margin:auto; height:70px; padding-left:20px;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Premium Giggler</div>
 		<div>Cost: 100</div>
-		<button onclick="buyUpgrade('PremiumGiggler')" style="width:90px; height:30px;" id="upgamt2">Level 0</button>
+		<button onclick="buyUpgrade('PremiumGiggler')" style="width:90px; height:30px;" id="upgamt2">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:#191b1d; color:white; font-family:'Courier New';  margin:auto; height:70px; padding-left:20px;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Genk Giggler</div>
 		<div>Cost: 250</div>
-		<button onclick="buyUpgrade('GenkGiggler')" style="width:90px; height:30px;" id="upgamt3">Level 0</button>
+		<button onclick="buyUpgrade('GenkGiggler')" style="width:90px; height:30px;" id="upgamt3">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:right; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Mokey Giggler</div>
 		<div>Cost: 250</div>
-		<button onclick="buyUpgrade('MokeyGiggler')" style="width:90px; height:30px;" id="upgamt4">Level 0</button>
+		<button onclick="buyUpgrade('MokeyGiggler')" style="width:90px; height:30px;" id="upgamt4">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
 		<div>Cost: 1000</div>
-		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level 0</button>
+		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
-	<section style="background-color:#191b1d; color:white; font-family:'Courier New'; margin:auto; height:70px; padding-left:20px;">
+	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">???</div>
 		<div>Cost: 200000</div>
-		<button onclick="buyUpgrade('QuestionMark')" style="width:90px; height:30px;" id="upgamt6">Level 0</button>
+		<button onclick="buyUpgrade('QuestionMark')" style="width:90px; height:30px;" id="upgamt6">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
