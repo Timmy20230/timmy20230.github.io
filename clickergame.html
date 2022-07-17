@@ -10,18 +10,20 @@
 		var upgradeauto = 1;
 		var msec = 0;
 		var autogiggler=0;
+		var autogigglerspeed = 5000;
 		var premiumgiggler=0;
 		var genkgiggler=0;
 		var renkgiggler=0;
 		var mokeygiggler=0;
 		var questionmark=0;
+		var upgradecost= 1;
 		var gems=0;
 		
 		//updates all values
 		function reloadall() {
-			document.getElementById("var").innerHTML = "Giggles: " + giggles;
+			document.getElementById("var").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
 			if(autogiggler>=1){
-				document.getElementById("persec").innerHTML = "Giggles/s: " + msec;
+				document.getElementById("persec").innerHTML = "AutoGiggles: " + msec;
 			}
 			document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
 			document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
@@ -37,6 +39,7 @@
 		  localStorage.setItem("giggleincrease", giggleincrease);
 		  localStorage.setItem("msec", msec);
 		  localStorage.setItem("autogiggler", autogiggler);
+		  localStorage.setItem("autogigglerspeed", autogigglerspeed);
 		  localStorage.setItem("premiumgiggler", premiumgiggler);
 		  localStorage.setItem("genkgiggler", genkgiggler);
 		  localStorage.setItem("renkgiggler", renkgiggler);
@@ -50,6 +53,7 @@
 		  giggleincrease = parseInt(localStorage.getItem("giggleincrease"));
 		  msec = parseInt(localStorage.getItem("msec"));
 		  autogiggler = parseInt(localStorage.getItem("autogiggler"));
+		  autogigglerspeed = parseInt(localStorage.getItem("autogigglerspeed"));
 		  premiumgiggler = parseInt(localStorage.getItem("premiumgiggler"));
 		  genkgiggler = parseInt(localStorage.getItem("genkgiggler"));
 		  renkgiggler = parseInt(localStorage.getItem("renkgiggler"));
@@ -72,15 +76,65 @@
 		}
 		
 		function buyUpgrade(x){
+			if(giggles==0){
+			} else 
 			if(x=="AutoGiggler"){
-				if(giggles>=25){
-					giggles = giggles - 25;
+				if(upgrade1x == 1){
+					if(giggles>=(25*(upgradecost))){
+					giggles = giggles - (25*(upgradecost));
 					msec = msec + upgradeauto;
 					autogiggler += 1;
+					upgradecost++;
 					update();
 					document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
-				} else {
-					alert("You do not have enough for the Auto Giggler!");
+					document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(25*upgradecost);
+					} else {
+						alert("You do not have enough for the Auto Giggler!");
+					}
+				}else if(upgrade5x == 1){
+					if(giggles>=(5*(25*(upgradecost)))){
+					giggles = giggles - 5(25*(upgradecost));
+					msec = msec + upgradeauto*5;
+					autogiggler += 5;
+					upgradecost += 5;
+					update();
+					document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
+					document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(5*25*upgradecost);
+					} else {
+						alert("You do not have enough for the Auto Giggler!");
+					}
+				}else if(upgrade10x == 1){
+				if(giggles>=(10*(25*(upgradecost)))){
+						giggles = giggles - 10(25*(upgradecost));
+						msec = msec + upgradeauto*10;
+						autogiggler += 10;
+						upgradecost += 10;
+						update();
+						document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
+						document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(5*25*upgradecost);
+					} else {
+						alert("You do not have enough for the Auto Giggler!");
+					}
+				}else if(upgrade50x == 1){
+					if(giggles>=(50*(25*(upgradecost)))){
+						giggles = giggles - 50(25*(upgradecost));
+						msec = msec + upgradeauto*50;
+						autogiggler += 50;
+						upgradecost += 50;
+						update();
+						document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
+						document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(50*25*upgradecost);
+					} else {
+						alert("You do not have enough for the Auto Giggler!");
+					}
+				}
+			}
+			if(x=="AutoGigglerSpeed"){
+				if(giggles>=(1000*upgradecost)){
+					if((autogigglerspeed-50) >=50){
+						autogigglerspeed = autogigglerspeed - 50;
+						update();
+					}
 				}
 			}
 			if(x=="PremiumGiggler"){
@@ -146,7 +200,7 @@
 				document.getElementById('box').innerText = "+" + ac(giggleincrease) + " Giggle";
 			}
 			if(autogiggler>=1){
-				document.getElementById('persec').innerText = "Giggles/s: " + ac(msec);
+				document.getElementById('persec').innerText = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
 			}
 		}
 		function clicked(){
@@ -174,9 +228,9 @@
 				if(genkgiggler>=1){
 					x = Math.random();
 					if(x < .01){
-						giggles = giggles + (genkgiggler * 20);
+						giggles = giggles + (genkgiggler * 2000);
 						update();
-						console.log("okay :/");
+						console.log("okay :/" + (giggles+(genkgiggler*2000)));
 					}
 					if(mokeygiggler>=1){
 					x = Math.random();
@@ -200,13 +254,20 @@
 			update();
 		}
 		
-		function myTimer() {
-			giggles = giggles + msec;
-			reloadall();
+		function myFirstTimer() {
 			document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
 			document.getElementById("gems").innerHTML = "Gems: " + ac(gems);
+			if(autogiggler>=1){
+				document.getElementById("persec").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
+			}
 		}
-		setInterval(myTimer, 1000);
+		setInterval(myFirstTimer, 500);
+		
+		function myTimer() {
+			giggles = giggles + msec;
+			update();
+		}
+		setInterval(myTimer, autogigglerspeed);
 		
 		function clearMessages() {
 			document.getElementById("autosave").innerHTML = "( ! )";
@@ -246,12 +307,14 @@
 	<div style="font-size: 20px; width: 700px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
     <br>
     </center>
-    <button id="box" style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 40px; outline:0; transition: ease all .1s; width:100px; float:center;" onclick='clicked()'>+1 Giggle</button>
+	<div id="autospeed" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s; width:270px;" onclick='clicked'>AutoGiggler Speed: 5 Seconds</div>
+	<br>
+    <button id="box" style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 40px; outline:0; transition: ease all .1s; width:150px; float:center;" onclick='clicked()'>+1 Giggle</button>
     <h1 style="font-size: 28px">Upgrades!</h1>
 	
     <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 70px; width:600px; outline:0; transition: ease all .1s;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
-			<div>Cost: 25</div>
+			<div id="buyAutoGiggler">Cost: 25</div>
 		<button onclick="buyUpgrade('AutoGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt1">Level: 0</button>
 		<br>
 		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
