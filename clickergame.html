@@ -58,6 +58,7 @@
 		  workerown = parseInt(localStorage.getItem("workerown"));
 		  gems = parseInt(localStorage.getItem("gems"));
 		  reloadall();
+		  update();
 		}
 		//save before exiting
 		function closingCode() {
@@ -117,8 +118,8 @@
 				if(giggles>=10000){
 					giggles = giggles - 10000;
 					renkgiggler += 1;
-					update();
 					document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+					update();
 				} else {
 					alert("You do not have enough for the Renk Giggler!");
 				}
@@ -138,7 +139,9 @@
 		function update() {
 			document.getElementById('var').innerText = "Giggles: " + ac(giggles);
 			if(renkgiggler>=1){
-				document.getElementById('box').innerText = "+" + ac(giggleincrease*renkgiggler);
+				document.getElementById('box').innerText = "+" + ac(giggleincrease+ (giggleincrease*renkgiggler)) + " Giggles";
+			} else if(premiumgiggler>=1){
+				document.getElementById('box').innerText = "+" + ac(giggleincrease) + " Giggles";
 			} else {
 				document.getElementById('box').innerText = "+" + ac(giggleincrease) + " Giggle";
 			}
@@ -148,7 +151,8 @@
 		}
 		function clicked(){
 			if(renkgiggler>=1){
-				giggles = giggles + (giggleincrease*renkgiggler);
+				giggles = giggles + (giggleincrease+(giggleincrease*renkgiggler));
+				update();
 				if(genkgiggler>=1){
 					x = Math.random();
 					if(x < .01){
@@ -224,30 +228,32 @@
   
   <body onbeforeunload="closingCode()" id="question" style="margin:0px; padding:0px; background-attachment: fixed; color:#ffffff; text-align:-webkit-center; background-color:#232527;">
 	<section style="float:right;">
-		<div id='autosave' class="round" style="visibility:true; font-family:courier;  font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">( ! )</div>
+		<div id='autosave' class="round" style="visibility:true; width: 40px; font-family:courier;  font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">( ! )</div>
 		<br>
-		<div id='gems' class="round" style="visibility:true; font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;"><img src="https://media.discordapp.net/attachments/917831049030012939/997613922779660389/1144441.png" style="width:20px; height:20px;"> Gems: 0</div>
+		<section style="visibility:true; font-family:courier; width:70px; font-size: 12px; color: #4D5259; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
+			<div id='gems' class="round"> Gems: 0</div>
+		</section>
 	</section>
 	<section style="float:left;">
 		<div id="menu" class="round" onclick="openMenu()" style="visibility:true; font-family:courier;  font-size: 24px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .2em .7em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 100px; outline:0; transition: ease all .1s;">
-			Coming Soon!
+			+
 		</div>
 	</section>
     <div class="name" style="width:200px; color:#ffffff; font-family:'Courier';">Giggle Clicker</div>
-    <div class="version" style="width:150px; color:#ffffff; font-family:'Courier';">Version Alpha</div>
 	<br>
     <center>
     <div style="font-size: 20px; width: 200px; color:#ffffff; font-family:'Courier';" id="var">Giggles: 0</div>
 	<div style="font-size: 20px; width: 700px; color:#ffffff; font-family:'Courier';" id="persec">Purchase the Auto Giggler to Unlock Auto Clicking!</div>
     <br>
-    <button id="box" style="width:100px; height:50px;" onclick='clicked()'>+1 Giggle</button>
     </center>
-    <h1 style="font-size: 30px">Upgrades!</h1>
+    <button id="box" style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 40px; outline:0; transition: ease all .1s; width:100px; float:center;" onclick='clicked()'>+1 Giggle</button>
+    <h1 style="font-size: 28px">Upgrades!</h1>
 	
     <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 70px; width:600px; outline:0; transition: ease all .1s;">
 			<div id="upgrade" style="width:150px;">Auto Giggler</div>
 			<div>Cost: 25</div>
-			<button onclick="buyUpgrade('AutoGiggler')" style="width:90px; height:30px;" id="upgamt1">Level: 0</button>
+		<button onclick="buyUpgrade('AutoGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt1">Level: 0</button>
+		<br>
 		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
 	</section>
 	<br>
@@ -255,7 +261,7 @@
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Premium Giggler</div>
 		<div>Cost: 100</div>
-		<button onclick="buyUpgrade('PremiumGiggler')" style="width:90px; height:30px;" id="upgamt2">Level: 0</button>
+		<button onclick="buyUpgrade('PremiumGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt2">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
@@ -265,7 +271,7 @@
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Genk Giggler</div>
 		<div>Cost: 250</div>
-		<button onclick="buyUpgrade('GenkGiggler')" style="width:90px; height:30px;" id="upgamt3">Level: 0</button>
+		<button onclick="buyUpgrade('GenkGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt3">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:right; height:20px; width:200px;">Enhance</div>
@@ -275,7 +281,7 @@
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px";>Mokey Giggler</div>
 		<div>Cost: 500</div>
-		<button onclick="buyUpgrade('MokeyGiggler')" style="width:90px; height:30px;" id="upgamt4">Level: 0</button>
+		<button onclick="buyUpgrade('MokeyGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt4">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
@@ -285,7 +291,7 @@
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">Renk Giggler</div>
 		<div>Cost: 10000</div>
-		<button onclick="buyUpgrade('RenkGiggler')" style="width:90px; height:30px;" id="upgamt5">Level: 0</button>
+		<button onclick="buyUpgrade('RenkGiggler')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt5">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
@@ -295,7 +301,7 @@
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">???</div>
 		<div>Cost: 200000</div>
-		<button onclick="buyUpgrade('QuestionMark')" style="width:90px; height:30px;" id="upgamt6">Level: 0</button>
+		<button onclick="buyUpgrade('QuestionMark')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt6">Level: 0</button>
 		<br>
 		</div>
 		<div id="enhancement" style="float:center; height:20px; width:200px;">Enhance</div>
