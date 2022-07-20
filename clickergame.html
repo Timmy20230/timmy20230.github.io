@@ -769,7 +769,7 @@
 				if(genkgiggler>=1){
 					x = Math.random();
 					if(x < .01){
-						giggles = giggles + (genkgiggler * 20 * (renkgiggler));
+                        giggles = giggles + (genkgiggler * 1000 * (renkgiggler));
 						update();
 						console.log("okay :/");
 					}
@@ -786,10 +786,10 @@
 				giggles = giggles + giggleincrease;
 				if(genkgiggler>=1){
 					x = Math.random();
-					if(x < (.01*genkgiggler)) {
-						giggles = giggles + (genkgiggler * 2000);
+					if(x < (.01)) {
+						giggles = giggles + (genkgiggler * 200);
 						update();
-						console.log("okay :/" + ((genkgiggler*2000)));
+						console.log("okay :/" + ((genkgiggler*200)));
 					}
 					if(mokeygiggler>=1){
 					x = Math.random();
@@ -822,6 +822,48 @@
                 document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 1));
                 document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 1));
                 document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 1));
+                if (giggles < getUpgradeCost("autogiggler", 1)) {
+                    document.getElementById('upgamt1').style.borderColor = "#d43131";
+                    document.getElementById('upgamt1').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt1').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt1').style.boxShadow.borderColor = "#24702a";
+                }
+                if (giggles < getUpgradeCost("premiumgiggler", 1)) {
+                    document.getElementById('upgamt2').style.borderColor = "#d43131";
+                    document.getElementById('upgamt2').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt2').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt2').style.boxShadow.borderColor = "#24702a";
+                }
+                if (giggles < getUpgradeCost("genkgiggler", 1)) {
+                    document.getElementById('upgamt3').style.borderColor = "#d43131";
+                    document.getElementById('upgamt3').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt3').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt3').style.boxShadow.borderColor = "#24702a";
+                }
+                if (giggles < getUpgradeCost("mokeygiggler", 1)) {
+                    document.getElementById('upgamt4').style.borderColor = "#d43131";
+                    document.getElementById('upgamt4').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt4').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt4').style.boxShadow.borderColor = "#24702a";
+                }
+                if (giggles < getUpgradeCost("renkgiggler", 1)) {
+                    document.getElementById('upgamt5').style.borderColor = "#d43131";
+                    document.getElementById('upgamt5').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt5').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt5').style.boxShadow.borderColor = "#24702a";
+                }
+                if (giggles < getUpgradeCost("questionmark", 1)) {
+                    document.getElementById('upgamt6').style.borderColor = "#d43131";
+                    document.getElementById('upgamt6').style.boxShadow.borderColor = "#630d0d";
+                } else {
+                    document.getElementById('upgamt6').style.borderColor = "#2e8c36";
+                    document.getElementById('upgamt6').style.boxShadow.borderColor = "#24702a";
+                }
 			}
             if (upgrade5x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + (getUpgradeCost("autogiggler", 5));
@@ -849,9 +891,9 @@
             }
 			if(autogiggler>=1){
 				document.getElementById("persec").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
-			}
+            }
 		}
-		setInterval(myFirstTimer, 500);
+		setInterval(myFirstTimer, 1);
 		
 		function myTimer() {
 			giggles = giggles + msec;
