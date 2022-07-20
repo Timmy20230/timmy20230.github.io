@@ -96,7 +96,7 @@
         }
 		//updates all values
 		function reloadall() {
-			document.getElementById("var").innerHTML = "Giggles: " +  giggles;
+			document.getElementById("var").innerHTML = "Giggles: " +  ac(giggles);
             if (autogiggler >= 1) {
                 document.getElementById("persec").innerHTML = "AutoGiggles: " + autogiggler * 10 + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
             }
