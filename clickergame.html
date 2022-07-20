@@ -215,6 +215,8 @@
                     if ((autogigglerspeed - 100) > 0) {
                         giggles = giggles - enhancecost1;
                         autogigglerspeed = autogigglerspeed - 100;
+                        clearInterval(myTimer());
+                        setInterval(myTimer(), autogigglerspeed);
                         console.log(autogigglerspeed);
                     } else {
                         alert("This is the max upgrade you can have!");
@@ -313,7 +315,7 @@
                         alert("You do not have enough for the  Giggler!");
                     }
                 } else if (upgrade10x == 1) {
-                    if (giggles >= (getUpgradeCost("genkgiggler", 1))) {
+                    if (giggles >= (getUpgradeCost("genkgiggler", 10))) {
                         giggles = (giggles - getUpgradeCost("genkgiggler", 10));
                         genkgiggler += 10;
                         for (x = 0; x < 10; x++) {
@@ -954,9 +956,10 @@
 		
 		function myTimer() {
 			giggles = giggles + msec;
-			update();
+            update();
+            console.log(autogigglerspeed);
 		}
-		setInterval(myTimer, autogigglerspeed);
+		setTimeout(myTimer, 5000);
 		
 		function clearMessages() {
 			document.getElementById("autosave").innerHTML = "( ! )";
