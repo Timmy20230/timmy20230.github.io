@@ -22,7 +22,8 @@
         var upgradecost3 = 250;
         var upgradecost4 = 500;
 		var upgradecost5 = 10000;
-		var upgradecost6 = 200000;
+        var upgradecost6 = 200000;
+        var enhancecost1 = 1000;
 		var gems = 0;
 		var upgrade1x = 1;
 		var upgrade5x = 0;
@@ -210,12 +211,18 @@
 				}
 			}
 			if(x=="AutoGigglerSpeed"){
-				if(giggles>=(1000*upgradecost)){
-					if((autogigglerspeed-50) >=50){
-						autogigglerspeed = autogigglerspeed - 50;
-						update();
-					}
-				}
+                if (giggles >= (enhancecost1)) {
+                    if ((autogigglerspeed - 100) > 0) {
+                        giggles = giggles - enhancecost1;
+                        autogigglerspeed = autogigglerspeed - 100;
+                        console.log(autogigglerspeed);
+                    } else {
+                        alert("This is the max upgrade you can have!");
+                    }
+                    update();
+                } else {
+                    alert("You can't upgrade the speed of the Auto Giggler!");
+                }
 			}
 			if(x=="PremiumGiggler"){
                 if (upgrade1x == 1) {
@@ -523,7 +530,6 @@
 							price += upgradeprice;
 							currentnumber += price;
 						}
-					console.log(currentnumber)
 					return currentnumber + 25;
 				}
 				if (upgradeamt == 10) {
@@ -533,7 +539,6 @@
                         price += upgradecost1;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 25;
                 }
                 if (upgradeamt == 50) {
@@ -543,7 +548,6 @@
                         price += upgradecost1;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 25;
                 }
 			}
@@ -560,7 +564,6 @@
                         price += upgradeprice;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 100;
                 }
                 if (upgradeamt == 10) {
@@ -570,7 +573,6 @@
                         price += upgradecost2;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 100;
                 }
                 if (upgradeamt == 50) {
@@ -580,7 +582,6 @@
                         price += upgradecost2;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 100;
                 }
             }
@@ -597,7 +598,6 @@
                         price += upgradecost3;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 250;
                 }
                 if (upgradeamt == 10) {
@@ -607,7 +607,6 @@
                         price += upgradecost3;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 250;
                 }
                 if (upgradeamt == 50) {
@@ -617,7 +616,6 @@
                         price += upgradecost3;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 250;
                 }
             }
@@ -634,7 +632,6 @@
                         price += upgradecost4;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 500;
                 }
                 if (upgradeamt == 10) {
@@ -644,7 +641,6 @@
                         price += upgradecost4;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 500;
                 }
                 if (upgradeamt == 50) {
@@ -654,7 +650,6 @@
                         price += upgradecost4;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 500;
                 }
             }
@@ -671,7 +666,6 @@
                         price += upgradecost5;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 10000;
                 }
                 if (upgradeamt == 10) {
@@ -681,7 +675,6 @@
                         price += upgradecost5;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 10000;
                 }
                 if (upgradeamt == 50) {
@@ -691,7 +684,6 @@
                         price += upgradecost5;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 10000;
                 }
             }
@@ -708,7 +700,6 @@
                         price += upgradecost6;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 200000;
                 }
                 if (upgradeamt == 10) {
@@ -718,7 +709,6 @@
                         price += upgradecost6;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 200000;
                 }
                 if (upgradeamt == 50) {
@@ -728,7 +718,6 @@
                         price += upgradecost6;
                         currentnumber += price;
                     }
-                    console.log(currentnumber)
                     return currentnumber + 200000;
                 }
             }
@@ -755,7 +744,7 @@
 					if(x < .01){
                         giggles = giggles + (genkgiggler * 1000 * (renkgiggler));
 						update();
-						console.log("okay :/");
+						console.log("okay :/" + (genkgiggler*1000*(renkgiggler)));
 					}
 				}
 				if(mokeygiggler>=1){
@@ -798,7 +787,13 @@
 		}
 		
 		function myFirstTimer() {
-			document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
+            document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
+            if (giggles >= enhancecost1) {
+                document.getElementById('enhanceautogiggler1').style.borderColor = "#2e8c36";
+            }
+            if (autogiggler >= 1) {
+                document.getElementById('enhanceautogiggler1').innerText = "Enhance";
+            }
 			if (upgrade1x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 1));
                 document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 1));
@@ -844,6 +839,36 @@
                 document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 5));
                 document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 5));
                 document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 5));
+                if (giggles < getUpgradeCost("autogiggler", 5)) {
+                    document.getElementById('upgamt1').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt1').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("premiumgiggler", 5)) {
+                    document.getElementById('upgamt2').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt2').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("genkgiggler", 5)) {
+                    document.getElementById('upgamt3').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt3').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("mokeygiggler", 5)) {
+                    document.getElementById('upgamt4').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt4').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("renkgiggler", 5)) {
+                    document.getElementById('upgamt5').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt5').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("questionmark", 5)) {
+                    document.getElementById('upgamt6').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt6').style.borderColor = "#2e8c36";
+                }
 			}
             if (upgrade10x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 10));
@@ -852,6 +877,36 @@
                 document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 10));
                 document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 10));
                 document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 10));
+                if (giggles < getUpgradeCost("autogiggler", 10)) {
+                    document.getElementById('upgamt1').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt1').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("premiumgiggler", 10)) {
+                    document.getElementById('upgamt2').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt2').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("genkgiggler", 10)) {
+                    document.getElementById('upgamt3').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt3').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("mokeygiggler", 10)) {
+                    document.getElementById('upgamt4').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt4').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("renkgiggler", 10)) {
+                    document.getElementById('upgamt5').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt5').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("questionmark", 10)) {
+                    document.getElementById('upgamt6').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt6').style.borderColor = "#2e8c36";
+                }
 			}
             if (upgrade50x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 50));
@@ -860,6 +915,36 @@
                 document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 50));
                 document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 50));
                 document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 50));
+                if (giggles < getUpgradeCost("autogiggler", 50)) {
+                    document.getElementById('upgamt1').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt1').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("premiumgiggler", 50)) {
+                    document.getElementById('upgamt2').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt2').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("genkgiggler", 50)) {
+                    document.getElementById('upgamt3').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt3').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("mokeygiggler", 50)) {
+                    document.getElementById('upgamt4').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt4').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("renkgiggler", 50)) {
+                    document.getElementById('upgamt5').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt5').style.borderColor = "#2e8c36";
+                }
+                if (giggles < getUpgradeCost("questionmark", 50)) {
+                    document.getElementById('upgamt6').style.borderColor = "#d43131";
+                } else {
+                    document.getElementById('upgamt6').style.borderColor = "#2e8c36";
+                }
             }
 			if(autogiggler>=1){
 				document.getElementById("persec").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
@@ -928,8 +1013,10 @@
     <h1 style="font-size: 28px">Upgrades!</h1>
 	
     <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 70px; width:600px; outline:0; transition: ease all .1s;">
-			<div id="upgrade" style="width:150px;">Auto Giggler</div>
-			<div id="buyAutoGiggler">Cost: 25</div>
+        <button onclick="buyUpgrade('AutoGigglerSpeed')" style="float:right; font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="enhanceautogiggler1" ">???</button>
+		<div style="float:right;" id="enchancecost1"></div>
+        <div id="upgrade" style="width:150px;">Auto Giggler</div>
+		<div id="buyAutoGiggler" style="width:150px;">Cost: 25</div>
 		<button onclick="buyUpgrade('autogiggler')" style="font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="upgamt1">Level: 0</button>
 		<br>
 		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
