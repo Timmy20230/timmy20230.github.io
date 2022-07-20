@@ -95,8 +95,8 @@
 		//updates all values
 		function reloadall() {
 			document.getElementById("var").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
-			if(autogiggler>=1){
-				document.getElementById("persec").innerHTML = "AutoGiggles: " + msec;
+            if (autogiggler >= 1) {
+                document.getElementById("persec").innerHTML = "AutoGiggles: " + autogiggler * 10 + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
 			}
 			document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
 			document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
@@ -731,8 +731,8 @@
 			} else {
 				document.getElementById('box').innerText = "+" + ac(giggleincrease) + " Giggle";
 			}
-			if(autogiggler>=1){
-				document.getElementById('persec').innerText = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
+            if (autogiggler >= 1) {
+                document.getElementById("persec").innerHTML = "AutoGiggles: " + autogiggler * 10 + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
 			}
 		}
 		function clicked(){
@@ -946,8 +946,8 @@
                     document.getElementById('upgamt6').style.borderColor = "#2e8c36";
                 }
             }
-			if(autogiggler>=1){
-				document.getElementById("persec").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
+            if (autogiggler >= 1) {
+                document.getElementById("persec").innerHTML = "AutoGiggles: " + (autogiggler * 10) + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
             }
 		}
 		setInterval(myFirstTimer, 1);
@@ -1013,14 +1013,15 @@
     <h1 style="font-size: 28px">Upgrades!</h1>
 	
     <section style="font-family:courier; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 70px; width:600px; outline:0; transition: ease all .1s;">
-        <button onclick="buyUpgrade('AutoGigglerSpeed')" style="float:right; font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="enhanceautogiggler1" ">???</button>
-		<div style="float:right;" id="enchancecost1"></div>
+        <button style="float: left; font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #4D5259; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; ">?</button>
+        <button onclick="buyUpgrade('AutoGigglerSpeed')" style="float:right; font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="enhanceautogiggler1">???</button>
+        <div style="float:right;" id="enchancecost1"></div>
         <div id="upgrade" style="width:150px;">Auto Giggler</div>
-		<div id="buyAutoGiggler" style="width:150px;">Cost: 25</div>
-		<button onclick="buyUpgrade('autogiggler')" style="font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="upgamt1">Level: 0</button>
-		<br>
-		<div id="enhancement" style="height:20px; width:200px;">Enhance</div>
-	</section>
+        <div id="buyAutoGiggler" style="width:150px;">Cost: 25</div>
+        <button onclick="buyUpgrade('autogiggler')" style="font-family: courier; font-size: 12px; color: #000000; line-height: 1.5; font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #d43131; box-shadow: 2px 2px 0 0 #4D5259; border-radius: 40px; outline: 0; transition: ease all .1s; " id="upgamt1">Level: 0</button>
+        <br>
+        <div id="enhancement" style="height:20px; width:200px;">Enhance</div>
+    </section>
 	<br>
 	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
