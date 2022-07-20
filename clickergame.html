@@ -35,7 +35,9 @@
 			upgrade10x = 0;
 			upgrade50x = 0;
             console.log("1x activated");
-			document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 1));
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 1));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 1));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 1));
             document.getElementById('1xbut').style.borderColor = "#2e8c36";
             document.getElementById('1xbut').style.boxShadow.borderColor = "#24702a";
             document.getElementById('5xbut').style.borderColor = "#d43131";
@@ -52,7 +54,9 @@
             upgrade10x = 0;
             upgrade50x = 0;
             console.log("5x activated");
-			document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 5));
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 5));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 5));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 5));
             console.log("yeah autoggigler" + ac(getUpgradeCost("autogiggler", 5)))
             document.getElementById('5xbut').style.borderColor = "#2e8c36";
             document.getElementById('5xbut').style.boxShadow.borderColor = "#24702a";
@@ -70,6 +74,9 @@
             upgrade10x = 1;
             upgrade50x = 0;
             console.log("10x activated");
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 10));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 10));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 10));
             document.getElementById('10xbut').style.borderColor = "#2e8c36";
             document.getElementById('10xbut').style.boxShadow.borderColor = "#24702a";
             document.getElementById('1xbut').style.borderColor = "#d43131";
@@ -86,6 +93,9 @@
             upgrade10x = 0;
             upgrade50x = 1;
             console.log("50x activated");
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 50));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 50));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 50));
             document.getElementById('50xbut').style.borderColor = "#2e8c36";
             document.getElementById('50xbut').style.boxShadow.borderColor = "#24702a";
             document.getElementById('1xbut').style.borderColor = "#d43131";
@@ -224,65 +234,295 @@
 				}
 			}
 			if(x=="PremiumGiggler"){
-				if(giggles>=upgradecost2){
-                    giggles = giggles - upgradecost2;
-                    msec = msec + upgradeauto;
-                    premiumgiggler += 1;
-                    giggleincrease += 1;
-                    upgradecost2 += 100;
-                    document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
-                    document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(upgradecost2);
-					update();
-				} else {
-					alert("You do not have enough for the Premium Giggler!");
-				}
+                if (upgrade1x == 1) {
+                    if (giggles >= (getUpgradeCost("premiumgiggler", 1))) {
+                        giggles = giggles - upgradecost2;
+                        msec = msec + upgradeauto;
+                        premiumgiggler += 1;
+                        giggleincrease += 1;
+                        upgradecost2 += 50;
+                        document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+                        document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(upgradecost2);
+                        update();
+                    } else {
+                        alert("You do not have enough for the Premium Giggler!");
+                    }
+                } else if (upgrade5x == 1) {
+                    if (giggles >= (getUpgradeCost("premiumgiggler", 5))) {
+                        giggles = (giggles - getUpgradeCost("premiumgiggler", 5));
+						premiumgiggler += 5;
+                        for (x = 0; x < 5; x++) {
+                            upgradecost2 += 50;
+                            giggleincrease += 1;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+                        document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(upgradecost2);
+                        update();
+                    } else {
+                        alert("You do not have enough for the Premium Giggler!");
+                    }
+                } else if (upgrade10x == 1) {
+                    if (giggles >= (getUpgradeCost("premiumgiggler", 1))) {
+                        giggles = (giggles - getUpgradeCost("premiumgiggler", 10));
+                        premiumgiggler += 10;
+                        for (x = 0; x < 10; x++) {
+                            upgradecost2 += 50;
+                            giggleincrease += 1;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+                        document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(upgradecost2);
+                        update();
+                    } else {
+                        alert("You do not have enough for the Premium Giggler!");
+                    }
+                } else if (upgrade50x == 1) {
+                    if (giggles >= (getUpgradeCost("premiumgiggler", 50))) {
+                        giggles = (giggles - getUpgradeCost("premiumgiggler", 50));
+                        premiumgiggler += 50;
+                        for (x = 0; x < 50; x++) {
+                            upgradecost2 += 50;
+                            giggleincrease += 1;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
+                        document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(upgradecost2);
+                        update();
+                    } else {
+                        alert("You do not have enough for the Premium Giggler!");
+                    }
+                }
 			}
 			if(x=="GenkGiggler"){
-				if(giggles>=upgradecost3){
-                    giggles = giggles - upgradecost3;
-					genkgiggler += 1;
-					upgradecost3 += 250;
-                    document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
-                    document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(upgradecost3);
-					update();
-				} else {
-					alert("You do not have enough for the Genk Giggler!");
-				}
+                if (upgrade1x == 1) {
+                    if (giggles >= (getUpgradeCost("genkgiggler", 1))) {
+                        giggles = giggles - getUpgradeCost("genkgiggler",1);
+                        msec = msec + upgradeauto;
+                        genkgiggler += 1;
+                        upgradecost3 += 250;
+                        document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
+                        document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(upgradecost3);
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade5x == 1) {
+                    if (giggles >= (getUpgradeCost("genkgiggler", 5))) {
+                        giggles = (giggles - getUpgradeCost("genkgiggler", 5));
+                        genkgiggler += 5;
+                        for (x = 0; x < 5; x++) {
+                            upgradecost3 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
+                        document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(upgradecost3);
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade10x == 1) {
+                    if (giggles >= (getUpgradeCost("genkgiggler", 1))) {
+                        giggles = (giggles - getUpgradeCost("genkgiggler", 10));
+                        genkgiggler += 10;
+                        for (x = 0; x < 10; x++) {
+                            upgradecost3 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
+                        document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(upgradecost3);
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade50x == 1) {
+                    if (giggles >= (getUpgradeCost("genkgiggler", 50))) {
+                        giggles = (giggles - getUpgradeCost("genkgiggler", 50));
+                        genkgiggler += 50;
+                        for (x = 0; x < 50; x++) {
+                            upgradecost3 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
+                        document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(upgradecost3);
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                }
 			}
 			if(x=="MokeyGiggler"){
-                if (giggles >= upgradecost4){
-                    giggles = giggles - upgradecost4;
-                    mokeygiggler += 1;
-                    upgradecost4 += 500;
-                    document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
-                    document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(upgradecost4);
-					update();
-				} else {
-					alert("You do not have enough for the Mokey Giggler!");
-				}
+                if (upgrade1x == 1) {
+                    if (giggles >= (getUpgradeCost("mokeygiggler", 1))) {
+                        giggles = giggles - getUpgradeCost("mokeygiggler", 1);
+                        msec = msec + upgradeauto;
+                        mokeygiggler += 1;
+                        upgradecost4 += 50;
+                        document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+                        document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 1));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade5x == 1) {
+                    if (giggles >= (getUpgradeCost("mokeygiggler", 5))) {
+                        giggles = (giggles - getUpgradeCost("mokeygiggler", 5));
+                        mokeygiggler += 5;
+                        for (x = 0; x < 5; x++) {
+                            upgradecost4 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+                        document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 5));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade10x == 1) {
+                    if (giggles >= (getUpgradeCost("mokeygiggler", 1))) {
+                        giggles = (giggles - getUpgradeCost("mokeygiggler", 10));
+                        mokeygiggler += 10;
+                        for (x = 0; x < 10; x++) {
+                            msec = msec + upgradeauto;
+                            upgradecost4 += 50;
+                        }
+                        document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+                        document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 10));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade50x == 1) {
+                    if (giggles >= (getUpgradeCost("mokeygiggler", 50))) {
+                        giggles = (giggles - getUpgradeCost("", 50));
+                        mokeygiggler += 50;
+                        for (x = 0; x < 50; x++) {
+                            msec = msec + upgradeauto;
+                            upgradecost += 50;
+                        }
+                        document.getElementById('upgamt4').innerText = "Level: " + ac(mokeygiggler);
+                        document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 50));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                }
 			}
 			if(x=="RenkGiggler"){
-                if (giggles >= upgradecost5){
-                    giggles = giggles - upgradecost5;
-                    renkgiggler += 1;
-                    upgradecost5 += 10000;
-                    document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
-                    document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(upgradecost5);
-					update();
-				} else {
-					alert("You do not have enough for the Renk Giggler!");
-				}
+
+                if (upgrade1x == 1) {
+                    if (giggles >= (getUpgradeCost("renkgiggler", 1))) {
+                        giggles = giggles - getUpgradeCost("renkgiggler", 1);
+                        msec = msec + upgradeauto;
+                        renkgiggler += 1;
+                        upgradecost5 += 10000;
+                        document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+                        document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 1));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade5x == 1) {
+                    if (giggles >= (getUpgradeCost("renkgiggler", 5))) {
+                        giggles = (giggles - getUpgradeCost("renkgiggler", 5));
+                        renkgiggler += 5;
+                        for (x = 0; x < 5; x++) {
+                            upgradecost5 += 10000;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+                        document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 5));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade10x == 1) {
+                    if (giggles >= (getUpgradeCost("renkgiggler", 1))) {
+                        giggles = (giggles - getUpgradeCost("renkgiggler", 10));
+                        renkgiggler += 10;
+                        for (x = 0; x < 10; x++) {
+                            upgradecost5 += 10000;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+                        document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 10));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade50x == 1) {
+                    if (giggles >= (getUpgradeCost("renkgiggler", 50))) {
+                        giggles = (giggles - getUpgradeCost("renkgiggler", 50));
+                        renkgiggler += 50;
+                        for (x = 0; x < 50; x++) {
+                            upgradecost5 += 10000;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt5').innerText = "Level: " + ac(renkgiggler);
+                        document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 50));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                }
 			}
 			if(x=="QuestionMark"){
-				if(giggles>=200000){
-					giggles = giggles - 200000;
-					questionmark += 1;
-					upgradecost6 += 200000;
-                    document.getElementById('upgamt6').innerText = "Level: " + ac(questionmark);
-                    update();
-				} else {
-					alert("You do not have enough for the ???!");
-				}
+
+                if (upgrade1x == 1) {
+                    if (giggles >= (getUpgradeCost("questionmark", 1))) {
+                        giggles = giggles - getUpgradeCost("questionmark",1);
+                        msec = msec + upgradeauto;
+                        questionmark += 1;
+                        upgradecost6 += 50;
+                        document.getElementById('upgamt6').innerText = "Level: " + ac(questionmark);
+                        document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark",1));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade5x == 1) {
+                    if (giggles >= (getUpgradeCost("questionmark", 5))) {
+                        giggles = (giggles - getUpgradeCost("questionmark", 5));
+                        questionmark += 5;
+                        for (x = 0; x < 5; x++) {
+                            upgradecost6 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt6').innerText = "Level: " + ac();
+                        document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 5));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade10x == 1) {
+                    if (giggles >= (getUpgradeCost("questionmark", 1))) {
+                        giggles = (giggles - getUpgradeCost("questionmark", 10));
+                        questionmark += 10;
+                        for (x = 0; x < 10; x++) {
+                            upgradecost6 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt6').innerText = "Level: " + ac();
+                        document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 10));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                } else if (upgrade50x == 1) {
+                    if (giggles >= (getUpgradeCost("questionmark", 50))) {
+                        giggles = (giggles - getUpgradeCost("questionmark", 50));
+                        questionmark += 50;
+                        for (x = 0; x < 50; x++) {
+                            upgradecost6 += 50;
+                            msec = msec + upgradeauto;
+                        }
+                        document.getElementById('upgamt6').innerText = "Level: " + ac();
+                        document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 50));
+                        update();
+                    } else {
+                        alert("You do not have enough for the  Giggler!");
+                    }
+                }
 			}
 		}
         function getUpgradeCost(name1, upgradeamt) {
@@ -322,7 +562,192 @@
                     console.log(currentnumber)
                     return currentnumber + 25;
                 }
-			} else return false;
+			}
+			if (name1 == "premiumgiggler") {
+                if (upgradeamt == 1) {
+                    var price = upgradecost2;
+                    return price;
+                }
+                if (upgradeamt == 5) {
+                    var currentnumber = 0;
+                    var upgradeprice = upgradecost2;
+                    var price = upgradecost2;
+                    for (x = 0; x < 4; x++) {
+                        price += upgradeprice;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 100;
+                }
+                if (upgradeamt == 10) {
+                    var currentnumber = 0;
+                    var price = upgradecost2;
+                    for (x = 0; x < 9; x++) {
+                        price += upgradecost2;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 100;
+                }
+                if (upgradeamt == 50) {
+                    var currentnumber = 0;
+                    var price = upgradecost2;
+                    for (x = 0; x < 49; x++) {
+                        price += upgradecost2;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 100;
+                }
+            }
+            if (name1 == "genkgiggler") {
+                if (upgradeamt == 1) {
+                    var price = upgradecost3;
+                    return price;
+                }
+                if (upgradeamt == 5) {
+                    var currentnumber = 0;
+                    var upgradeprice = upgradecost3;
+                    var price = upgradecost3;
+                    for (x = 0; x < 4; x++) {
+                        price += upgradecost3;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 250;
+                }
+                if (upgradeamt == 10) {
+                    var currentnumber = 0;
+                    var price = upgradecost3;
+                    for (x = 0; x < 9; x++) {
+                        price += upgradecost3;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 250;
+                }
+                if (upgradeamt == 50) {
+                    var currentnumber = 0;
+                    var price = upgradecost3;
+                    for (x = 0; x < 49; x++) {
+                        price += upgradecost3;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 250;
+                }
+            }
+            if (name1 == "mokeygiggler") {
+                if (upgradeamt == 1) {
+                    var price = upgradecost4;
+                    return price;
+                }
+                if (upgradeamt == 5) {
+                    var currentnumber = 0;
+                    var upgradeprice = upgradecost4;
+                    var price = upgradecost4;
+                    for (x = 0; x < 4; x++) {
+                        price += upgradecost4;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 500;
+                }
+                if (upgradeamt == 10) {
+                    var currentnumber = 0;
+                    var price = upgradecost4;
+                    for (x = 0; x < 9; x++) {
+                        price += upgradecost4;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 500;
+                }
+                if (upgradeamt == 50) {
+                    var currentnumber = 0;
+                    var price = upgradecost4;
+                    for (x = 0; x < 49; x++) {
+                        price += upgradecost4;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 500;
+                }
+            }
+            if (name1 == "renkgiggler") {
+                if (upgradeamt == 1) {
+                    var price = upgradecost5;
+                    return price;
+                }
+                if (upgradeamt == 5) {
+                    var currentnumber = 0;
+                    var upgradeprice = upgradecost5;
+                    var price = upgradecost5;
+                    for (x = 0; x < 4; x++) {
+                        price += upgradecost5;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 10000;
+                }
+                if (upgradeamt == 10) {
+                    var currentnumber = 0;
+                    var price = upgradecost5;
+                    for (x = 0; x < 9; x++) {
+                        price += upgradecost5;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 10000;
+                }
+                if (upgradeamt == 50) {
+                    var currentnumber = 0;
+                    var price = upgradecost5;
+                    for (x = 0; x < 49; x++) {
+                        price += upgradecost5;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 10000;
+                }
+            }
+            if (name1 == "questionmark") {
+                if (upgradeamt == 1) {
+                    var price = upgradecost6;
+                    return price;
+                }
+                if (upgradeamt == 5) {
+                    var currentnumber = 0;
+                    var upgradeprice = upgradecost6;
+                    var price = upgradecost6;
+                    for (x = 0; x < 4; x++) {
+                        price += upgradecost6;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 200000;
+                }
+                if (upgradeamt == 10) {
+                    var currentnumber = 0;
+                    var price = upgradecost6;
+                    for (x = 0; x < 9; x++) {
+                        price += upgradecost6;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 200000;
+                }
+                if (upgradeamt == 50) {
+                    var currentnumber = 0;
+                    var price = upgradecost6;
+                    for (x = 0; x < 49; x++) {
+                        price += upgradecost6;
+                        currentnumber += price;
+                    }
+                    console.log(currentnumber)
+                    return currentnumber + 200000;
+                }
+            }
 		}
 		function update() {
 			document.getElementById('var').innerText = "Giggles: " + ac(giggles);
@@ -361,7 +786,7 @@
 				giggles = giggles + giggleincrease;
 				if(genkgiggler>=1){
 					x = Math.random();
-					if(x < .01){
+					if(x < (.01*genkgiggler)) {
 						giggles = giggles + (genkgiggler * 2000);
 						update();
 						console.log("okay :/" + ((genkgiggler*2000)));
@@ -392,15 +817,35 @@
 			document.getElementById("var").innerHTML = "Giggles: " + ac(giggles);
 			if (upgrade1x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 1));
+                document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 1));
+                document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 1));
+                document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 1));
+                document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 1));
+                document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 1));
 			}
             if (upgrade5x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + (getUpgradeCost("autogiggler", 5));
+                document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 5));
+                document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 5));
+                document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 5));
+                document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 5));
+                document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 5));
 			}
             if (upgrade10x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 10));
+                document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 10));
+                document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 10));
+                document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 10));
+                document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 10));
+                document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 10));
 			}
             if (upgrade50x == 1) {
                 document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 50));
+                document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 50));
+                document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 50));
+                document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", 50));
+                document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", 50));
+                document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", 50));
             }
 			if(autogiggler>=1){
 				document.getElementById("persec").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
@@ -519,7 +964,7 @@
 	<section style="font-family:courier; float:center; font-size: 12px; color: #4D5259; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #FFFFFF; border: 2px solid #4D5259; box-shadow: 4px 4px 0 0 #4D5259; border-radius: 100px; width:600px; outline:0; transition: ease all .1s;">
 		<div style="float:center;">
 		<div id="upgrade" style="width:150px;">???</div>
-		<div>Cost: 200000</div>
+		<div id="buyQuestionMark">Cost: 200000</div>
 		<button onclick="buyUpgrade('QuestionMark')" style="font-family:courier; font-size: 12px; color: #000000; line-height: 1.5;font-weight: bold; padding: .5em 2em; background: #bfc9c0; border: 2px solid #2e8c36; box-shadow: 2px 2px 0 0 #24702a; border-radius: 40px; outline:0; transition: ease all .1s;" id="upgamt6">Level: 0</button>
 		<br>
 		</div>
