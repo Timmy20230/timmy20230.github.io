@@ -36,9 +36,6 @@
 			upgrade10x = 0;
 			upgrade50x = 0;
             console.log("1x activated");
-            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 1));
-            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 1));
-            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 1));
             document.getElementById('1xbut').style.borderColor = "#2e8c36";
             document.getElementById('5xbut').style.borderColor = "#d43131";
             document.getElementById('10xbut').style.borderColor = "#d43131";
@@ -51,9 +48,6 @@
             upgrade10x = 0;
             upgrade50x = 0;
             console.log("5x activated");
-            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 5));
-            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 5));
-            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 5));
             console.log("yeah autoggigler" + ac(getUpgradeCost("autogiggler", 5)))
             document.getElementById('5xbut').style.borderColor = "#2e8c36";
             document.getElementById('1xbut').style.borderColor = "#d43131";
@@ -67,9 +61,6 @@
             upgrade10x = 1;
             upgrade50x = 0;
             console.log("10x activated");
-            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 10));
-            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 10));
-            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 10));
             document.getElementById('10xbut').style.borderColor = "#2e8c36";
             document.getElementById('1xbut').style.borderColor = "#d43131";
             document.getElementById('5xbut').style.borderColor = "#d43131";
@@ -82,22 +73,39 @@
             upgrade10x = 0;
             upgrade50x = 1;
             console.log("50x activated");
-            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", 50));
-            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", 50));
-            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", 50));
             document.getElementById('50xbut').style.borderColor = "#2e8c36";
             document.getElementById('1xbut').style.borderColor = "#d43131";
             document.getElementById('5xbut').style.borderColor = "#d43131";
             document.getElementById('10xbut').style.borderColor = "#d43131";
 			update();
         }
-		
+
+        function getMulti() {
+            if (upgrade1x == 1) {
+                return 1;
+            }
+            if (upgrade5x == 1) {
+                return 5;
+            }
+            if (upgrade10x == 1) {
+                return 10;
+            }
+            if (upgrade50x == 1) {
+                return 50;
+            }
+        }
 		//updates all values
 		function reloadall() {
 			document.getElementById("var").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
             if (autogiggler >= 1) {
                 document.getElementById("persec").innerHTML = "AutoGiggles: " + autogiggler * 10 + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
-			}
+            }
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", getMulti()));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", getMulti()));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", getMulti()));
+            document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", getMulti()));
+            document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", getMulti()));
+            document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", getMulti()));
 			document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
 			document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
 			document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
@@ -108,17 +116,17 @@
 		}
 		//overwrites save file
 		function save() {
-		  localStorage.setItem("giggles", giggles);
-		  localStorage.setItem("giggleincrease", giggleincrease);
-		  localStorage.setItem("msec", msec);
-		  localStorage.setItem("autogiggler", autogiggler);
-		  localStorage.setItem("autogigglerspeed", autogigglerspeed);
-		  localStorage.setItem("premiumgiggler", premiumgiggler);
-		  localStorage.setItem("genkgiggler", genkgiggler);
-		  localStorage.setItem("renkgiggler", renkgiggler);
-		  localStorage.setItem("mokeygiggler", mokeygiggler);
-		  localStorage.setItem("questionmark", questionmark);
-		  localStorage.setItem("gems", gems);
+		    localStorage.setItem("giggles", giggles);
+		     localStorage.setItem("giggleincrease", giggleincrease);
+		     localStorage.setItem("msec", msec);
+		     localStorage.setItem("autogiggler", autogiggler);
+		     localStorage.setItem("autogigglerspeed", autogigglerspeed);
+		     localStorage.setItem("premiumgiggler", premiumgiggler);
+		     localStorage.setItem("genkgiggler", genkgiggler);
+		     localStorage.setItem("renkgiggler", renkgiggler);
+		     localStorage.setItem("mokeygiggler", mokeygiggler);
+            localStorage.setItem("questionmark", questionmark);
+             localStorage.setItem("gems", gems);
 		}
 		//loads save file
 		function load() {
