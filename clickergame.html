@@ -96,16 +96,10 @@
         }
 		//updates all values
 		function reloadall() {
-			document.getElementById("var").innerHTML = "AutoGiggles: " +  autogiggler + " Giggles/" + ac((autogigglerspeed/1000)) + " seconds";
+			document.getElementById("var").innerHTML = "Giggles: " +  giggles;
             if (autogiggler >= 1) {
                 document.getElementById("persec").innerHTML = "AutoGiggles: " + autogiggler * 10 + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
             }
-            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", getMulti()));
-            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", getMulti()));
-            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", getMulti()));
-            document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", getMulti()));
-            document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", getMulti()));
-            document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", getMulti()));
 			document.getElementById('upgamt1').innerText = "Level: " + ac(autogiggler);
 			document.getElementById('upgamt2').innerText = "Level: " + ac(premiumgiggler);
 			document.getElementById('upgamt3').innerText = "Level: " + ac(genkgiggler);
@@ -126,24 +120,44 @@
 		     localStorage.setItem("renkgiggler", renkgiggler);
 		     localStorage.setItem("mokeygiggler", mokeygiggler);
             localStorage.setItem("questionmark", questionmark);
-             localStorage.setItem("gems", gems);
+            localStorage.setItem("gems", gems);
+            localStorage.setItem("upgradecost1", upgradecost1);
+            localStorage.setItem("upgradecost2", upgradecost2);
+            localStorage.setItem("upgradecost3", upgradecost3);
+            localStorage.setItem("upgradecost4", upgradecost4);
+            localStorage.setItem("upgradecost5", upgradecost5);
+            localStorage.setItem("upgradecost6", upgradecost6);
+            localStorage.setItem("enhancecost1", enhancecost1);
 		}
 		//loads save file
 		function load() {
-		  giggles = parseInt(localStorage.getItem("giggles"));
-		  giggleincrease = parseInt(localStorage.getItem("giggleincrease"));
-		  msec = parseInt(localStorage.getItem("msec"));
-		  autogiggler = parseInt(localStorage.getItem("autogiggler"));
-		  autogigglerspeed = parseInt(localStorage.getItem("autogigglerspeed"));
-		  premiumgiggler = parseInt(localStorage.getItem("premiumgiggler"));
-		  genkgiggler = parseInt(localStorage.getItem("genkgiggler"));
-		  renkgiggler = parseInt(localStorage.getItem("renkgiggler"));
-		  mokeygiggler = parseInt(localStorage.getItem("mokeygiggler"));
-		  questionmark = parseInt(localStorage.getItem("questionmark"));
-		  workerown = parseInt(localStorage.getItem("workerown"));
-		  gems = parseInt(localStorage.getItem("gems"));
-		  reloadall();
-		  update();
+            giggles = parseInt(localStorage.getItem("giggles"));
+            giggleincrease = parseInt(localStorage.getItem("giggleincrease"));
+            msec = parseInt(localStorage.getItem("msec"));
+            autogiggler = parseInt(localStorage.getItem("autogiggler"));
+            autogigglerspeed = parseInt(localStorage.getItem("autogigglerspeed"));
+            premiumgiggler = parseInt(localStorage.getItem("premiumgiggler"));
+            genkgiggler = parseInt(localStorage.getItem("genkgiggler"));
+            renkgiggler = parseInt(localStorage.getItem("renkgiggler"));
+            mokeygiggler = parseInt(localStorage.getItem("mokeygiggler"));
+            questionmark = parseInt(localStorage.getItem("questionmark"));
+            workerown = parseInt(localStorage.getItem("workerown"));
+            gems = parseInt(localStorage.getItem("gems"));
+            upgradecost1 = parseInt(localStorage.getItem("upgradecost1"));
+            upgradecost2 = parseInt(localStorage.getItem("upgradecost2"));
+            upgradecost3 = parseInt(localStorage.getItem("upgradecost3"));
+            upgradecost4 = parseInt(localStorage.getItem("upgradecost4"));
+            upgradecost5 = parseInt(localStorage.getItem("upgradecost5"));
+            upgradecost6 = parseInt(localStorage.getItem("upgradecost6"));
+            enhancecost1 = parseInt(localStorage.getItem("enhancecost1"));
+            update();
+            reloadall();
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", getMulti()));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", getMulti()));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", getMulti()));
+            document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", getMulti()));
+            document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", getMulti()));
+            document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", getMulti()));
 		}
 		//save before exiting
 		function closingCode() {
@@ -959,6 +973,14 @@
             if (autogiggler >= 1) {
                 document.getElementById("persec").innerHTML = "AutoGiggles: " + (autogiggler * 10) + " Giggles/" + ac((autogigglerspeed / 1000)) + " seconds";
             }
+            document.getElementById('buyAutoGiggler').innerText = "Cost: " + ac(getUpgradeCost("autogiggler", getMulti()));
+            document.getElementById('buyPremiumGiggler').innerText = "Cost: " + ac(getUpgradeCost("premiumgiggler", getMulti()));
+            document.getElementById('buyGenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("genkgiggler", getMulti()));
+            document.getElementById('buyMokeyGiggler').innerText = "Cost: " + ac(getUpgradeCost("mokeygiggler", getMulti()));
+            document.getElementById('buyRenkGiggler').innerText = "Cost: " + ac(getUpgradeCost("renkgiggler", getMulti()));
+            document.getElementById('buyQuestionMark').innerText = "Cost: " + ac(getUpgradeCost("questionmark", getMulti()));
+            update();
+            reloadall();
 		}
 		setInterval(myFirstTimer, 1);
 		
